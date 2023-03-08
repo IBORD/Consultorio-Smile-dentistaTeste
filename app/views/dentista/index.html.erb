@@ -1,0 +1,29 @@
+<h2>Lista de Dentistas</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Endereço</th>
+    <th>Telefone</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @dentista.each do |dentista| %>
+    <tr>
+      <td><%= dentista.nome %></td>
+      <td><%= dentista.endereco %></td>
+      <td><%= dentista.telefone %></td>
+      <td><%= link_to 'Ver', dentista_path(dentista) %> | <%= link_to 'Editar', edit_dentista_path(dentista) %> | <%= link_to 'Excluir', dentista_path(dentista), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= def new_dentista_path
+      # code here
+    end
+    link_to 'Novo Dentist', new_dentista_path %>

@@ -1,0 +1,13 @@
+<h2><%= @dentista.nome %></h2>
+<p><%= @dentista.endereco %></p>
+<p><%= @dentista.telefone %></p>
+
+<h3>Horários de Atendimento</h3>
+<ul>
+  <% @dentista.horarios_de_atendimento.each do |horario| %>
+    <li><%= horario.dia_da_semana %> - <%= horario.horario_inicio %> - <%= horario.horario_termino %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Editar', edit_dentista_path(@dentista) %> |
+<%= link_to 'Voltar', dentistas_path %>

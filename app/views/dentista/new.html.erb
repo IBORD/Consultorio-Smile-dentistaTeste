@@ -1,0 +1,44 @@
+<h1>New dentistum</h1>
+
+<%= form_with(model: @dentista, url: dentistas_path) do |form| %>
+  <% if @dentista.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dentista.errors.count, "erro") %> impediram que este dentista fosse salvo:</h2>
+
+      <ul>
+        <% @dentista.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :telefone %>
+    <%= form.text_field :telefone %>
+  </div>
+
+  <div>
+    <%= form.label :especializacao %>
+    <%= form.select :especializacao, Dentista.especializacoes.keys %>
+  </div>
+
+  <div>
+    <%= form.label :horario_atendimento %>
+    <% %w(Domingo Segunda Terça Quarta Quinta Sexta Sábado).each do |dia| %>
+      <%= form.label "horario_atendimento[#{dia.downcase}][]", dia %>
+      <%= form.collection_select("horario_atendimento[#{dia.downcase}][]", [], [], {}, {multiple: true}) %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit "Salvar" %>
+  </div>
+<% end %>
+
+<%= link_to "Voltar", dentistas_path %>
